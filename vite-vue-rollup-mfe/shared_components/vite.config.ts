@@ -10,9 +10,18 @@ export default defineConfig({
       name: 'shared_components',
       filename: 'remoteEntry.js',
       exposes: {
-        './Button': 'src/Button.vue',
+        './UiButton': './src/UiButton.vue',
       },
       shared: ['vue'],
     }),
   ],
+  server: {
+    port: 5001,
+  },
+  preview: {
+    port: 5001,
+  },
+  build: {
+    target: 'esnext',
+  },
 })
