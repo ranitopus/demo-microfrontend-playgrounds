@@ -23,7 +23,7 @@
     cursor: pointer;
     transition: border-color .25s, box-shadow .25s, transform .25s, filter .25s;
   }
-  button:hover {
+  button:hover, button:focus {
     border-color: #646cff;
     box-shadow: .125em .25em .5em 0 rgba(0, 0, 0, .375);
     transform: translateY(-0.0625em);
