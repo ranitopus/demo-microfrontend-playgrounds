@@ -14,12 +14,6 @@ export default defineConfig({
       shared: ['vue'],
     }),
   ],
-  server: {
-    port: 5000,
-  },
-  preview: {
-    port: 5000,
-  },
   build: {
     target: 'esnext',
   },
