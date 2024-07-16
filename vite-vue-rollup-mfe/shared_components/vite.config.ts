@@ -11,6 +11,7 @@ export default defineConfig({
       filename: 'remoteEntry.js',
       exposes: {
         './UiButton': './src/UiButton.vue',
+        './UiTextInput': './src/UiTextInput.vue',
       },
       shared: ['vue'],
     }),
