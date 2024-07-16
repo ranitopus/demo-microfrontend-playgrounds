@@ -23,5 +23,7 @@
 </template>
 
 <style scoped>
-
+  h1 {
+    margin-top: .25em;
+  }
 </style>
