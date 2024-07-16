@@ -6,7 +6,7 @@
   "scripts": {
     "serve:dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "build:watch": "vue-tsc -b && vite build --watch",
+    "build:watch": "npm run build -- --watch",
     "preview": "vite preview",
     "serve:dev:mfe": "npm run build:watch & npm run preview"
   },

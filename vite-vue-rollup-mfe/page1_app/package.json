@@ -4,9 +4,11 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "vite",
+    "serve:dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview"
+    "build:watch": "npm run build -- --watch",
+    "preview": "vite preview",
+    "serve:dev:mfe": "npm run build:watch & npm run preview"
   },
   "dependencies": {
     "vue": "^3.4.29"

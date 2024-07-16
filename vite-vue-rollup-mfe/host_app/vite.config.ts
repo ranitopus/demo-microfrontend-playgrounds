@@ -10,6 +10,8 @@ export default defineConfig({
       name: 'host_app',
       remotes: {
         shared_components: 'http://localhost:5001/assets/remoteEntry.js',
+        page1: 'http://localhost:5002/assets/remoteEntry.js',
+        page2: 'http://localhost:5003/assets/remoteEntry.js',
       },
       shared: ['vue'],
     }),
