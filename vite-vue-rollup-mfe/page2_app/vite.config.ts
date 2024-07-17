@@ -25,6 +25,6 @@ export default defineConfig({
     port: 5003,
   },
   build: {
-    target: 'esnext',
+    target: 'es2022',
   },
 })
