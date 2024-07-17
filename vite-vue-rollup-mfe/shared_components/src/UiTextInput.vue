@@ -48,10 +48,10 @@
     padding: .6em 1.2em;
     font-size: 1em;
   }
-  input:focus {
+  input:hover, input:focus {
     border-color: #646cff;
   }
-  label:has(input:focus) > span {
+  label:has(input:hover) > span, label:has(input:focus) > span {
     color: #646cff;
     filter: brightness(80%);
   }
