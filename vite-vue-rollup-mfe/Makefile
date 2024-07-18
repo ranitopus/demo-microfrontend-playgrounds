@@ -9,7 +9,7 @@ STATIC_MFE_PORT := 42069
 .PHONY: build_all_mfe_modules clean_all_mfe_modules_builds init_all_mfe_modules_deps
 .PHONY: clean_all_mfe_modules_deps clean_all_mfe_modules serve_host_app
 .PHONY: clean_host_app_build init_host_app_deps clean_host_app_deps clean_host_app 
-.PHONY: serve_static_mfe_src clean_all_builds clean_all_deps clean_all
+.PHONY: serve_static_mfe_src clean_all_builds clean_all_deps clean_all watch_builds_update_static
 
 .DEFAULT_GOAL = generate_static_mfe_src
 
@@ -41,6 +41,17 @@ generate_static_mfe_src: create_static_mfe_dir
 		echo \">> Copying $${module_dir} built content to .static...\" \
 		&& mkdir -p .static/$${module_dir} \
 		&& cp -a $${module_dir}/dist/assets/. .static/$${module_dir}\
+	) \
+	&& $(MAKE) watch_builds_update_static
+
+watch_builds_update_static:
+	$(call if_dev_mode,\
+		bash -c '$$($(call loop_all_mfe_modules,\
+			echo \"\
+				echo \>\> Watching $${module_dir} build for changes to send it to .static... \
+				&& (npx -y nodemon --watch $${module_dir}/dist/assets --ext js,css --exec \"cp -a $${module_dir}/dist/assets/. .static/$${module_dir}\" &)\
+			\"\
+		))'\
 	)
 
 create_static_mfe_dir:
