@@ -11,7 +11,7 @@ STATIC_MFE_PORT := 42069
 .PHONY: clean_host_app_build init_host_app_deps clean_host_app_deps clean_host_app 
 .PHONY: serve_static_mfe_src clean_all_builds clean_all_deps clean_all watch_builds_update_static
 
-.DEFAULT_GOAL = generate_static_mfe_src
+.DEFAULT_GOAL = serve_static_mfe_src
 
 define loop_all_mfe_modules
 	for module_dir in ./*; do\
@@ -32,26 +32,20 @@ endef
 
 .static: generate_static_mfe_src
 
-generate_static_mfe_src: create_static_mfe_dir
-	$(call if_dev_mode,\
-		($(MAKE) build_all_mfe_modules & sleep 5),\
-		$(MAKE) build_all_mfe_modules\
-	) \
-	&& $(call loop_all_mfe_modules,\
+generate_static_mfe_src: create_static_mfe_dir build_all_mfe_modules
+	$(call loop_all_mfe_modules,\
 		echo \">> Copying $${module_dir} built content to .static...\" \
 		&& mkdir -p .static/$${module_dir} \
-		&& cp -a $${module_dir}/dist/assets/. .static/$${module_dir}\
-	) \
-	&& $(MAKE) watch_builds_update_static
-
-watch_builds_update_static:
-	$(call if_dev_mode,\
-		bash -c '$$($(call loop_all_mfe_modules,\
+		&& cp -a $${module_dir}/dist/assets/. .static/$${module_dir} \
+		&& $$($(call if_dev_mode,\
 			echo \"\
-				echo \>\> Watching $${module_dir} build for changes to send it to .static... \
-				&& (npx -y nodemon --watch $${module_dir}/dist/assets --ext js,css --exec \"cp -a $${module_dir}/dist/assets/. .static/$${module_dir}\" &)\
+				echo '>> Watching for file changes on $${module_dir} source code to rebuild and send again to .static...' \
+				&& cd $${module_dir} \
+				&& (npx -y nodemon --watch ./src --ext vue,ts,css --on-change-only --exec '\
+					npm run build && cp -a ./dist/assets/. ../.static/$${module_dir}\
+				' &)\
 			\"\
-		))'\
+		));\
 	)
 
 create_static_mfe_dir:
@@ -66,10 +60,7 @@ build_all_mfe_modules: init_all_mfe_modules_deps
 		if [[ ! -d $${module_dir}/dist ]]; then\
 			echo \">> Building $${module_dir} content into it's dist folder...\" \
 			&& cd $${module_dir} \
-			&& $$($(call if_dev_mode,\
-				echo \"(npm run build:watch &)\",\
-				echo \"npm run build\"\
-			));\
+			&& npm run build;\
 		fi\
 	)
 
