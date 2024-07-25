@@ -12,7 +12,8 @@ Setting up this repository to experiment various approaches to Microfrontend imp
 * Astro
   * (More soon...)
 * Rsbuild
-  * (More soon...)
+  * Module Federation 2
+    * [Vue only (MF003)](./rsbuild-vue-mfe2/README.md)
 * (More soon...)
 
 <br>
