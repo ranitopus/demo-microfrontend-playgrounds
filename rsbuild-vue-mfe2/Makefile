@@ -36,13 +36,13 @@ generate_static_mfe_src: create_static_mfe_dir build_all_mfe_modules
 	$(call loop_all_mfe_modules,\
 		echo \">> Copying $${module_dir} built content to .static...\" \
 		&& mkdir -p .static/$${module_dir} \
-		&& cp -a $${module_dir}/dist/assets/. .static/$${module_dir} \
+		&& cp -a $${module_dir}/dist/. .static/$${module_dir} \
 		&& $$($(call if_dev_mode,\
 			echo \"\
 				echo '>> Watching for file changes on $${module_dir} source code to rebuild and send again to .static...' \
 				&& cd $${module_dir} \
 				&& (npx -y nodemon --watch ./src --ext vue,ts,css --on-change-only --exec '\
-					npm run build && cp -a ./dist/assets/. ../.static/$${module_dir}\
+					npm run build && cp -a ./dist/. ../.static/$${module_dir}\
 				' &)\
 			\"\
 		));\

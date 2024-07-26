@@ -1,12 +1,13 @@
-import { defineConfig } from 'vite'
-import vue from '@vitejs/plugin-vue'
-import federation from '@originjs/vite-plugin-federation'
+import { defineConfig } from '@rsbuild/core'
+import { pluginVue as vue } from '@rsbuild/plugin-vue'
 
-// https://vitejs.dev/config/
+// https://rsbuild.dev/config
 export default defineConfig({
   plugins: [
     vue(),
-    federation({
+  ],
+  moduleFederation: {
+    options: {
       name: 'page2',
       filename: 'remoteEntry.js',
       exposes: {
@@ -16,15 +17,14 @@ export default defineConfig({
         shared_components: 'http://localhost:42069/shared_components/remoteEntry.js',
       },
       shared: ['vue'],
-    }),
-  ],
-  server: {
-    port: 5003,
+    },
   },
-  preview: {
-    port: 5003,
+  html: {
+    template: './index.html',
   },
-  build: {
-    target: 'es2022',
+  source: {
+    entry: {
+      index: './src/main.ts',
+    },
   },
 })
