@@ -14,7 +14,7 @@ export default defineConfig({
         './Page2': './src/Page2.vue',
       },
       remotes: {
-        shared_components: 'http://localhost:42069/shared_components/remoteEntry.js',
+        shared_components: 'shared_components@http://localhost:42069/shared_components/remoteEntry.js',
       },
       shared: ['vue'],
     },
