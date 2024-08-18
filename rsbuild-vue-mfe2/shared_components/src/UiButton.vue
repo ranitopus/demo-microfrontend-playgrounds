@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  const placeholderText = "Click me!"
+  const placeholderText = 'Click me!'
 </script>
 
 <template>

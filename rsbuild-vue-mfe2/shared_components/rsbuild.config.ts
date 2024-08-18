@@ -13,6 +13,7 @@ export default defineConfig({
       exposes: {
         './UiButton': './src/UiButton.vue',
         './UiTextInput': './src/UiTextInput.vue',
+        './UiModal': './src/UiModal.vue',
       },
       shared: ['vue'],
     },
