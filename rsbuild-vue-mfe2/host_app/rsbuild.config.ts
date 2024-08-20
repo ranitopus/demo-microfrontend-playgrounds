@@ -14,7 +14,7 @@ export default defineConfig({
         page1: 'page1@http://localhost:42069/page1_app/remoteEntry.js',
         page2: 'page2@http://localhost:42069/page2_app/remoteEntry.js',
       },
-      shared: ['vue'],
+      shared: ['vue', 'vue-router'],
     },
   },
   html: {

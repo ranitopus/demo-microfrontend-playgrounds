@@ -1,5 +1,6 @@
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref, onBeforeMount, onBeforeUnmount } from 'vue'
+  import { useRouter } from 'vue-router'
 
   // @ts-expect-error
   import UiButton from 'shared_components/UiButton'
@@ -7,10 +8,24 @@
   import UiModal from 'shared_components/UiModal'
 
   const showModal = ref(false)
+  const router = useRouter()
 
   function handleButtonClick() {
     alert('This is an action from Page 1.')
   }
+
+  let beforeEachOff: () => void
+
+  onBeforeMount(() => {
+    beforeEachOff = router.beforeEach((_from, _to, next) => {
+      console.log('>> router beforeEach hook callback from page1_app...')
+      next()
+    })
+  })
+
+  onBeforeUnmount(() => {
+    beforeEachOff?.()
+  })
 </script>
 
 <template>

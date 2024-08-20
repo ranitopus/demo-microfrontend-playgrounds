@@ -16,7 +16,7 @@ export default defineConfig({
       remotes: {
         shared_components: 'shared_components@http://localhost:42069/shared_components/remoteEntry.js',
       },
-      shared: ['vue'],
+      shared: ['vue', 'vue-router'],
     },
   },
   html: {

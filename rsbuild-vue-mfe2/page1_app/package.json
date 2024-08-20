@@ -11,7 +11,8 @@
     "serve:dev:mfe": "npm run build:watch & sleep 2 && npm run preview"
   },
   "dependencies": {
-    "vue": "^3.4.29"
+    "vue": "^3.4.29",
+    "vue-router": "^4.4.3"
   },
   "devDependencies": {
     "@rsbuild/core": "^1.0.1-beta.5",

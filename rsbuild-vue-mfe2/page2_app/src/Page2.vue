@@ -1,15 +1,31 @@
 <script lang="ts" setup>
-  import { ref } from 'vue'
+  import { ref, onBeforeMount, onBeforeUnmount } from 'vue'
+  import { useRouter } from 'vue-router'
+
   // @ts-expect-error
   import UiButton from 'shared_components/UiButton'
   // @ts-expect-error
   import UiTextInput from 'shared_components/UiTextInput'
 
   const inputTextValue = ref('')
+  const router = useRouter()
 
   function handleButtonClick() {
     alert('This is an action from Page 2.')
   }
+
+  let beforeEachOff: () => void
+
+  onBeforeMount(() => {
+    beforeEachOff = router.beforeEach((_from, _to, next) => {
+      console.log('>> router beforeEach hook callback from page2_app...')
+      next()
+    })
+  })
+
+  onBeforeUnmount(() => {
+    beforeEachOff?.()
+  })
 </script>
 
 <template>
