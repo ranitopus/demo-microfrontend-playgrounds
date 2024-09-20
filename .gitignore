@@ -1,0 +1,8 @@
+# Local only
+*.local.*
+.env*
+drafts/
+
+# Exceptions
+!.env.example
+!.env.test
