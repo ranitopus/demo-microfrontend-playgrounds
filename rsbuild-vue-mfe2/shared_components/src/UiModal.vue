@@ -67,10 +67,15 @@
   }
 
   dialog button[aria-roledescription="close"] i {
-    padding-top: .125rem;
-    padding-right: .125rem;
     line-height: 1.5rem;
     font-size: 1.5rem;
     color: #fff;
+    font-style: normal;
+  }
+
+  @supports (-moz-appearance: none) { /* Check if it's running in Firefox */
+    dialog button[aria-roledescription="close"] i {
+      margin-top: -0.125rem;
+    }
   }
 </style>
