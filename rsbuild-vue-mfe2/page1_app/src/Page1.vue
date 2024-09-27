@@ -1,5 +1,5 @@
 <script lang="ts" setup>
-  import { ref, onBeforeMount, onBeforeUnmount } from 'vue'
+  import { ref, onBeforeMount, onBeforeUnmount, inject } from 'vue'
   import { useRouter } from 'vue-router'
 
   // @ts-expect-error
@@ -26,6 +26,8 @@
   onBeforeUnmount(() => {
     beforeEachOff?.()
   })
+
+  const counterStore = inject('$counterStore') as ({count: number, countInc: Function} | null)
 </script>
 
 <template>
@@ -40,6 +42,9 @@
       <ui-button @click="showModal = true">
         Show modal
       </ui-button>
+    </p>
+    <p v-if="counterStore">
+      <i>Counter from host app is {{ counterStore.count }}</i>
     </p>
   </div>
   <ui-modal v-model="showModal" class="page1__modal">

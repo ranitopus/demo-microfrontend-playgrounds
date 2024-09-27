@@ -1,6 +1,8 @@
 <script setup lang="ts">
-  import { onBeforeMount } from 'vue'
+  // import { onBeforeMount } from 'vue'
+  import { onBeforeMount, provide } from 'vue'
   import { useRouter, RouterView, RouterLink } from 'vue-router'
+  import { useCounterStore } from './store'
 
   import HelloWorld from './components/HelloWorld.vue'
   import NotFound from './components/NotFound.vue'
@@ -17,6 +19,8 @@
     router.addRoute({path: '/page2',           component: Page2,   alias: ['/2']})
     router.addRoute({path: '/:pathMatch(.*)*', component: NotFound})
     router.replace(document.location.pathname)
+
+    provide('$counterStore', useCounterStore())
   })
 </script>
 
