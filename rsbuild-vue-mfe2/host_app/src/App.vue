@@ -1,8 +1,8 @@
 <script setup lang="ts">
-  // import { onBeforeMount } from 'vue'
-  import { onBeforeMount, provide } from 'vue'
+  import { onBeforeMount } from 'vue'
+  // import { onBeforeMount, provide } from 'vue'
   import { useRouter, RouterView, RouterLink } from 'vue-router'
-  import { useCounterStore } from './store'
+  // import { useCounterStore } from './store'
 
   import HelloWorld from './components/HelloWorld.vue'
   import NotFound from './components/NotFound.vue'
@@ -20,7 +20,7 @@
     router.addRoute({path: '/:pathMatch(.*)*', component: NotFound})
     router.replace(document.location.pathname)
 
-    provide('$counterStore', useCounterStore())
+    // provide('$counterStore', useCounterStore())
   })
 </script>
 
