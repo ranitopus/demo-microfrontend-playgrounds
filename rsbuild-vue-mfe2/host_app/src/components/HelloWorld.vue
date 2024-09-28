@@ -1,7 +1,6 @@
 <script setup lang="ts">
   import { inject, computed } from 'vue'
   import { TCounterStore } from '../store'
-  // import { ref } from 'vue'
 
   // @ts-expect-error
   import UiButton from 'shared_components/UiButton'
@@ -10,11 +9,9 @@
 
   const counterStore = inject('$counterStore') as (TCounterStore | null)
   const count = computed(() => counterStore?.count)
-  // const count = ref(0)
 
   function countInc() {
     counterStore?.countInc()
-    // count.value++
   }
 </script>
 
