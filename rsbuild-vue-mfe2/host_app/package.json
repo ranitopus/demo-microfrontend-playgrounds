@@ -16,6 +16,7 @@
     "vue-router": "^4.4.0"
   },
   "devDependencies": {
+    "@module-federation/enhanced": "^0.6.9",
     "@rsbuild/core": "^1.0.1-beta.4",
     "@rsbuild/plugin-vue": "^1.0.1-beta.4",
     "typescript": "^5.2.2",

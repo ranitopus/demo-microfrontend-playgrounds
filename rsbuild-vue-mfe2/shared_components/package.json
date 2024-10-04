@@ -14,6 +14,7 @@
     "vue": "^3.4.29"
   },
   "devDependencies": {
+    "@module-federation/enhanced": "^0.6.9",
     "@rsbuild/core": "^1.0.1-beta.5",
     "@rsbuild/plugin-vue": "^1.0.1-beta.5",
     "typescript": "^5.2.2",

@@ -8,13 +8,11 @@
   onBeforeMount(() => {
     const router = useRouter()
 
-    // @ts-expect-error
-    const Page1 = () => import('page1/Page1')
-    // @ts-expect-error
-    const Page2 = () => import('page2/Page2')
+    // const Page1 = () => import('page1/Page1')
+    // const Page2 = () => import('page2/Page2')
 
-    router.addRoute({path: '/page1',           component: Page1,   alias: ['/', '/1']})
-    router.addRoute({path: '/page2',           component: Page2,   alias: ['/2']})
+    // router.addRoute({path: '/page1',           component: Page1,   alias: ['/', '/1']})
+    // router.addRoute({path: '/page2',           component: Page2,   alias: ['/2']})
     router.addRoute({path: '/:pathMatch(.*)*', component: NotFound})
     router.replace(document.location.pathname)
   })
