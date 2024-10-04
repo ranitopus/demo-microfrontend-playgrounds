@@ -39,11 +39,15 @@ generate_static_mfe_src: create_static_mfe_dir build_all_mfe_modules
 		&& cp -a $${module_dir}/dist/. .static/$${module_dir} \
 		&& $$($(call if_dev_mode,\
 			echo \"\
-				echo '>> Watching for file changes on $${module_dir} source code to rebuild and send again to .static...' \
-				&& cd $${module_dir} \
-				&& (npx -y nodemon --watch ./src --ext vue,ts,css --on-change-only --exec '\
-					npm run build && cp -a ./dist/. ../.static/$${module_dir}\
-				' &)\
+				cd $${module_dir} \
+				&& (\
+					echo '>> Watching for file changes on $${module_dir} source code to rebuild and send again to .static...' \
+					&& npx -y nodemon --quiet --watch ./src --ext vue,ts,css --on-change-only --exec '\
+						echo \\\">> Rebuilding $${module_dir} and sending to .static...\\\" \
+						&& npm run build \
+						&& cp -a ./dist/. ../.static/$${module_dir}\
+					' &\
+				)\
 			\"\
 		));\
 	)
