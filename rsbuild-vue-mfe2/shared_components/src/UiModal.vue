@@ -19,7 +19,7 @@
 
 <template>
   <teleport to="body" v-if="show">
-    <dialog v-bind="attrs" :ref="(el) => initToggleModal(el as HTMLDialogElement)">
+    <dialog v-bind="attrs" :ref="(el: unknown) => initToggleModal(el as HTMLDialogElement)">
       <button aria-roledescription="close" @click="show = false"><i>&times;</i></button>
       <slot>{{ placeholderText }}</slot>
     </dialog>
