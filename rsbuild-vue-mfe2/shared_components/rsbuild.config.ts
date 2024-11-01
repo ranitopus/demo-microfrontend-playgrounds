@@ -37,7 +37,6 @@ export default defineConfig({
             './UiModal': './src/UiModal.vue',
           },
           shared: ['vue'],
-          // dts: {generateTypes: true},
         }),
       ])
     },
